@@ -430,7 +430,7 @@ robyn_onepagers <- function(
       p2 <- suppressWarnings(
         ggplot(plotWaterfallLoop, aes(x = .data$id, fill = .data$sign)) +
           geom_rect(aes(
-            x = .data$rn, xmin = .data$id - 0.45, xmax = .data$id + 0.45,
+            xmin = .data$id - 0.45, xmax = .data$id + 0.45,
             ymin = .data$end, ymax = .data$start
           ), stat = "identity") +
           scale_x_discrete("", breaks = levels(plotWaterfallLoop$rn), labels = plotWaterfallLoop$rn) +
