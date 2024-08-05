@@ -50,7 +50,7 @@ class Robyn:
 
 
     # Load previous state from MMMDataCollection object and validates
-    def loadPreviousState(self, mmmdata_collection: MMMDataCollection) -> None:
+    def load_state_from_collection(self, mmmdata_collection: MMMDataCollection) -> None:
         """
         Loads the previous state from an MMMDataCollection object and validates it.
 
@@ -60,7 +60,7 @@ class Robyn:
         pass
 
     # Load previous state from Json file
-    def loadPreviousState(self, mmmdata_collection_json_file: str) -> None:
+    def load_state_from_json(self, mmmdata_collection_json_file: str) -> None:
         """
         Loads the previous state from a JSON file and validates it.
 
