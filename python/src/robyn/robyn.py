@@ -18,6 +18,7 @@ from robyn.data.validation.mmmdata_validation import MMMDataValidation
 
 from robyn.analysis.budget_allocation_result import BudgetAllocationResult
 from robyn.analysis.budgetallocator_config import BudgetAllocatorConfig
+from robyn.data.entities.mmmdata_collection import MMMDataCollection
 from robyn.modeling.entities.modeloutput import ModelOutput
 from robyn.modeling.entities.modelrun_trials_config import TrialsConfig
 
