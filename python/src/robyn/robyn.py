@@ -14,6 +14,14 @@ from robyn.data.validation.holidays_data_validation import HolidaysDataValidatio
 from robyn.data.validation.hyperparameter_validation import HyperparametersValidation
 from robyn.data.validation.mmmdata_validation import MMMDataValidation
 
+#This needs to be rewritten to match the new structure of the codebase
+
+from robyn.analysis.budget_allocation_result import BudgetAllocationResult
+from robyn.analysis.budgetallocator_config import BudgetAllocatorConfig
+from robyn.modeling.entities.modeloutput import ModelOutput
+from robyn.modeling.entities.modelrun_trials_config import TrialsConfig
+
+
 class Robyn:
     def __init__(self, working_dir: str):
         """
@@ -49,18 +57,8 @@ class Robyn:
         calibration_input_validation.validate()
 
 
-    # Load previous state from MMMDataCollection object and validates
-    def load_state_from_collection(self, mmmdata_collection: MMMDataCollection) -> None:
-        """
-        Loads the previous state from an MMMDataCollection object and validates it.
-
-        Args:
-            mmmdata_collection (MMMDataCollection): The MMM data collection object.
-        """
-        pass
-
     # Load previous state from Json file
-    def load_state_from_json(self, mmmdata_collection_json_file: str) -> None:
+    def reload_from_json(self, mmmdata_collection_json_file: str) -> None:
         """
         Loads the previous state from a JSON file and validates it.
 
@@ -72,10 +70,9 @@ class Robyn:
     # Run models for all trials and iterations, using num of cores
     def model_run(
         self,
-        mmmdata_collection: MMMDataCollection,
         num_of_cores: int,
         trials_config: TrialsConfig,
-    ) -> OutputModels:
+    ) -> ModelOutput:
         """
         Runs the models for all trials and iterations using the specified number of cores.
 
@@ -92,8 +89,6 @@ class Robyn:
     # Run budget allocator for given MMMDataCollection and ModelOutputsCollection
     def budget_allocator(
         self,
-        mmmdata_colllection: MMMDataCollection,
-        model_output_collection: ModelOutputsCollection,
         select_model: str,
         budger_allocator_config: BudgetAllocatorConfig,
     ) -> BudgetAllocationResult:
