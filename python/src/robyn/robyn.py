@@ -3,12 +3,17 @@
 # TODO This needs to be rewritten to match the new structure of the codebase
 # TODO Add separate methods if state is loaded from robyn_object or json_file for each method
 
+<<<<<<< HEAD
 import logging
 
+=======
+from robyn.analysis.budget_allocator import BudgetAllocationResult, BudgetAllocatorConfig
+>>>>>>> 2b75434a9 (minor updates)
 from robyn.data.entities.calibration_input import CalibrationInput
 from robyn.data.entities.holidays_data import HolidaysData
 from robyn.data.entities.hyperparameters import Hyperparameters
 from robyn.data.entities.mmmdata import MMMData
+<<<<<<< HEAD
 from robyn.data.validation.calibration_input_validation import CalibrationInputValidation
 from robyn.data.validation.holidays_data_validation import HolidaysDataValidation
 from robyn.data.validation.hyperparameter_validation import HyperparametersValidation
@@ -18,8 +23,12 @@ from robyn.data.validation.mmmdata_validation import MMMDataValidation
 
 from robyn.analysis.budget_allocation_result import BudgetAllocationResult
 from robyn.analysis.budgetallocator_config import BudgetAllocatorConfig
+=======
+>>>>>>> 2b75434a9 (minor updates)
 from robyn.data.entities.mmmdata_collection import MMMDataCollection
+from robyn.modeling.entities.model_refresh_config import ModelRefreshConfig
 from robyn.modeling.entities.modeloutput import ModelOutput
+from robyn.modeling.entities.modeloutput_collection import ModelOutputCollection
 from robyn.modeling.entities.modelrun_trials_config import TrialsConfig
 
 
@@ -146,6 +155,7 @@ class Robyn:
         pass
 
     def robyn_response(
+        self,
         select_build=None,
         select_model=None,
         metric_name=None,
@@ -171,6 +181,7 @@ class Robyn:
 
     # If json_file has everything always including MMMDataCollection, ModelOutputCollection then use reinitialize_from_json
     def robyn_response_from_json(
+        self,
         json_file=None,
         select_build=None,
         select_model=None,
