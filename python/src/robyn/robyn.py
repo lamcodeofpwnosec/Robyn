@@ -3,17 +3,12 @@
 # TODO This needs to be rewritten to match the new structure of the codebase
 # TODO Add separate methods if state is loaded from robyn_object or json_file for each method
 
-<<<<<<< HEAD
 import logging
 
-=======
-from robyn.analysis.budget_allocator import BudgetAllocationResult, BudgetAllocatorConfig
->>>>>>> 2b75434a9 (minor updates)
 from robyn.data.entities.calibration_input import CalibrationInput
 from robyn.data.entities.holidays_data import HolidaysData
 from robyn.data.entities.hyperparameters import Hyperparameters
 from robyn.data.entities.mmmdata import MMMData
-<<<<<<< HEAD
 from robyn.data.validation.calibration_input_validation import CalibrationInputValidation
 from robyn.data.validation.holidays_data_validation import HolidaysDataValidation
 from robyn.data.validation.hyperparameter_validation import HyperparametersValidation
@@ -23,8 +18,6 @@ from robyn.data.validation.mmmdata_validation import MMMDataValidation
 
 from robyn.analysis.budget_allocation_result import BudgetAllocationResult
 from robyn.analysis.budgetallocator_config import BudgetAllocatorConfig
-=======
->>>>>>> 2b75434a9 (minor updates)
 from robyn.data.entities.mmmdata_collection import MMMDataCollection
 from robyn.modeling.entities.model_refresh_config import ModelRefreshConfig
 from robyn.modeling.entities.modeloutput import ModelOutput
