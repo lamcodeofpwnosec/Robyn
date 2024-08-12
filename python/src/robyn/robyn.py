@@ -75,6 +75,8 @@ class Robyn:
         self,
         num_of_cores: int,
         trials_config: TrialsConfig,
+        plot: bool = False,
+        export: bool = False,
     ) -> ModelOutput:
         """
         Runs the models for all trials and iterations using the specified number of cores.
@@ -94,6 +96,10 @@ class Robyn:
         self,
         select_model: str,
         budger_allocator_config: BudgetAllocatorConfig,
+        report: bool = False,
+        plot: bool = False,
+        onepager: bool = False,
+        export: bool = False,
     ) -> BudgetAllocationResult:
         """
         Runs the budget allocator for the given MMMDataCollection and ModelOutputsCollection.
@@ -115,6 +121,10 @@ class Robyn:
         robyn_object_json: str,
         select_model: str,
         budger_allocator_config: BudgetAllocatorConfig,
+        report: bool = False,
+        plot: bool = False,
+        onepager: bool = False,
+        export: bool = False,
     ) -> BudgetAllocationResult:
         """
         Runs the budget allocator using the specified JSON file.
