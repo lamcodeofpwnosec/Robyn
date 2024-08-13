@@ -157,28 +157,31 @@ class Robyn:
         """
         pass
 
-    def robyn_response(
-        self,
-        select_build=None,
-        select_model=None,
-        metric_name=None,
-        metric_value=None,
-        date_range=None,
-        dt_hyppar=None,
-        dt_coef=None,
-        quiet=False,
-    ):
-        """
-        Generates a response for the given input parameters.
 
-        Args:
-            select_build (_type_, optional): The selected build. Defaults to None.
-            select_model (_type_, optional): The selected model. Defaults to None.
-            metric_name (_type_, optional): The metric name. Defaults to None.
-            metric_value (_type_, optional): The metric value. Defaults to None.
-            date_range (_type_, optional): The date range. Defaults to None.
-            dt_hyppar (_type_, optional): The dt hyppar. Defaults to None.
-            dt_coef (_type_, optional): The dt coef. Defaults to None.
+    # Model Evaluate (outputs.R from Robyn)
+    def model_evaluate(self,
+        pareto_fronts : str="auto",
+        calibration_constraint : float=0.1,
+        plot_pareto: bool=True,
+        clusters: bool=True,
+        plot:bool=False,
+        select_model:str="clusters",
+        ) -> Any: #TODO Update return type
+        """
+        Evaluate the model using the given data collection and output models.
+
+        Parameters:
+        - mmmdata_collection (MMMDataCollection): The collection of MMMData objects.
+        - output_models (ModelOutput): The output models to evaluate.
+        - pareto_fronts (str, optional): The method to calculate pareto fronts. Defaults to "auto".
+        - calibration_constraint (float, optional): The calibration constraint value. Defaults to 0.1.
+        - plot_pareto (bool, optional): Whether to plot the pareto fronts. Defaults to True.
+        - clusters (bool, optional): Whether to use clustering. Defaults to True.
+        - plot (bool, optional): Whether to plot the results. Defaults to False.
+        - select_model (str, optional): The method to select the model. Defaults to "clusters".
+
+        Returns:
+        - ModelOutputCollection: The collection of model outputs.
         """
         pass
 
