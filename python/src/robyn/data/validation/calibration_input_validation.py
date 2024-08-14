@@ -8,8 +8,8 @@ class CalibrationInputValidation(Validation):
         self.mmmdata = mmmdata
         self.calibration_input = calibration_input
 
-    def check_calibration(
-        self, mmmdata: MMMData, calibration_input: CalibrationInput, window_start: int, window_end: int
+    def check_calibration_input(
+        self, mmm_data: MMMData, time_window: TimeWindow, day_interval: int
     ) -> ValidationResult:
         """
         This function checks the calibration input data for consistency and correctness.
@@ -19,10 +19,12 @@ class CalibrationInputValidation(Validation):
         # method implementation goes here
         raise NotImplementedError("Not yet implemented")
 
-    def check_obj_weight(
-        self, calibration_input: CalibrationInput, objective_weights: List[float], refresh: bool
+    def check_objective_weights(
+        self, objective_weights: Optional[List[float]], refresh: bool
     ) -> ValidationResult:
-        # method implementation goes here
+        """
+        Check if the objective weights are valid.
+        """
         raise NotImplementedError("Not yet implemented")
 
     def validate(self) -> ValidationResult:

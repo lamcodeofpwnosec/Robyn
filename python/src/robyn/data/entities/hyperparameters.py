@@ -1,4 +1,4 @@
-#pyre-strict
+# pyre-strict
 
 from dataclasses import dataclass
 from typing import Dict, List
@@ -53,7 +53,10 @@ class Hyperparameters:
     def __str__(self) -> str:
         return (
             f"Hyperparameters(\n"
-            + "\n".join(f"  {channel}={hyperparameter}" for channel, hyperparameter in self.hyperparameters.items())
+            + "\n".join(
+                f"  {channel}={hyperparameter}"
+                for channel, hyperparameter in self.hyperparameters.items()
+            )
             + "\n)"
         )
 

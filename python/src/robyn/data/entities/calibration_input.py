@@ -3,6 +3,7 @@ from typing import Dict
 import pandas as pd
 from robyn.data.entities.enums import CalibrationScope, DependentVarType
 
+
 # Define a new data class to hold the calibration data for each channel
 @dataclass(frozen=True)
 class ChannelCalibrationData:
