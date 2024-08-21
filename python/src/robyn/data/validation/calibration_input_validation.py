@@ -19,12 +19,10 @@ class CalibrationInputValidation(Validation):
         # method implementation goes here
         raise NotImplementedError("Not yet implemented")
 
-    def check_objective_weights(
-        self, objective_weights: Optional[List[float]], refresh: bool
+    def check_obj_weight(
+        self, calibration_input: CalibrationInput, objective_weights: List[float], refresh: bool
     ) -> ValidationResult:
-        """
-        Check if the objective weights are valid.
-        """
+        # method implementation goes here
         raise NotImplementedError("Not yet implemented")
 
     def validate(self) -> ValidationResult:
