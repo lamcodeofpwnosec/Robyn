@@ -6,8 +6,8 @@ from plotnine import ggplot, aes, geom_point, geom_line, labs, theme_gray, scale
 from robyn.data.entities.mmmdata_collection import MMMDataCollection
 
 class FeatureEngineering:
-    def __init__(self, mmm_data_collection: MMMDataCollection) -> None:
-        self.mmm_data_collection = mmm_data_collection
+    def __init__(self, mmm_data: MMMData) -> None:
+        self.mmm_data = mmm_data
 
     #inputs.robyn_engineering
     def feature_engineering(self, quiet: bool = False) -> MMMDataCollection:
