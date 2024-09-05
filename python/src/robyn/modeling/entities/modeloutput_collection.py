@@ -5,6 +5,7 @@ from datetime import datetime
 
 from robyn.modeling.entities.modeloutput import ModelOutput, ResultHypParam, XDecompAgg
 
+#TODO Work in progress. Planning to avoid using this type of collection data entitiy as much as possible.
 
 class ModelOutputCollection:
     # Group 1: Model Results

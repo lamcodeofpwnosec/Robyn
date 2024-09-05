@@ -7,8 +7,8 @@ class TrialsConfig:
         self,
         num_trials: int,
         num_iterations_per_trial: int,
-        timeseries_validation: bool,
-        add_penalty_factor: bool
+        timeseries_validation: bool, # TODO Does this belong in this class?
+        add_penalty_factor: bool     # TODO Does this belong in this class?
     ) -> None:
         self.num_trials: int = num_trials
         self.num_iterations_per_trial: int = num_iterations_per_trial
@@ -44,27 +44,3 @@ class TrialsConfig:
         self.num_iterations_per_trial = num_iterations_per_trial
         self.timeseries_validation = timeseries_validation
         self.add_penalty_factor = add_penalty_factor
-
-# Example usage:
-if __name__ == "__main__":
-    # Initialize TrialsConfig
-    trials_config: TrialsConfig = TrialsConfig(
-        num_trials=100,
-        num_iterations_per_trial=1000,
-        timeseries_validation=True,
-        add_penalty_factor=False
-    )
-
-    # Print the TrialsConfig object
-    print(trials_config)
-
-    # Update the TrialsConfig
-    trials_config.update(
-        num_trials=200,
-        num_iterations_per_trial=1500,
-        timeseries_validation=False,
-        add_penalty_factor=True
-    )
-
-    # Print the updated TrialsConfig object
-    print(trials_config)
