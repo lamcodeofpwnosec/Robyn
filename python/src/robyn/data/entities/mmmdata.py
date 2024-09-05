@@ -5,8 +5,6 @@ from typing import List, Optional, Any
 import pandas as pd
 from robyn.data.entities.enums import ContextSigns, DependentVarType, OrganicSigns, PaidMediaSigns
 
-
-@dataclass(frozen=True)
 class MMMData:
     class MMMDataSpec:
 
