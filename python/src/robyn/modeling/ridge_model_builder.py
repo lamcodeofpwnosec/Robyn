@@ -1,7 +1,6 @@
 # pyre-strict
 
 from dataclasses import dataclass
-from datetime import date
 from typing import Any, Dict, List, Optional
 
 import numpy as np
@@ -10,6 +9,7 @@ import pandas as pd
 from robyn.data.entities.calibration_input import CalibrationInput
 from robyn.data.entities.holidays_data import HolidaysData
 from robyn.data.entities.hyperparameters import Hyperparameters
+from robyn.data.entities.enums import AdStockType
 from robyn.data.entities.mmmdata import MMMData
 from robyn.modeling.entities.modeloutput import ModelOutputs, Trial
 from robyn.modeling.entities.modelrun_trials_config import TrialsConfig
