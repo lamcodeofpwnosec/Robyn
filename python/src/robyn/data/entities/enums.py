@@ -21,6 +21,8 @@ class AdstockType(str, Enum):
     """
     GEOMETRIC = "geometric"
     WEIBULL = "weibull"
+    WEIBULL_CDF = "weibull_cdf"
+    WEIBULL_PDF = "weibull_pdf"
 
 class SaturationType(str, Enum):
     """

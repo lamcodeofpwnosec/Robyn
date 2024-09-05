@@ -3,12 +3,17 @@
 # TODO This needs to be rewritten to match the new structure of the codebase
 # TODO Add separate methods if state is loaded from robyn_object or json_file for each method
 
+from typing import Any
 from robyn.analysis.budget_allocator import BudgetAllocationResult, BudgetAllocatorConfig
 from robyn.data.entities.calibration_input import CalibrationInput
 from robyn.data.entities.holidays_data import HolidaysData
 from robyn.data.entities.hyperparameters import Hyperparameters
 from robyn.data.entities.mmmdata import MMMData
 from robyn.data.entities.mmmdata_collection import MMMDataCollection
+from robyn.data.validation.calibration_input_validation import CalibrationInputValidation
+from robyn.data.validation.holidays_data_validation import HolidaysDataValidation
+from robyn.data.validation.hyperparameter_validation import HyperparametersValidation
+from robyn.data.validation.mmmdata_validation import MMMDataValidation
 from robyn.modeling.entities.model_refresh_config import ModelRefreshConfig
 from robyn.modeling.entities.modeloutput import ModelOutput
 from robyn.modeling.entities.modeloutput_collection import ModelOutputCollection
@@ -45,7 +50,18 @@ class Robyn:
             hyperparameters (HyperParametersConfig): The hyperparameters configuration object.
             calibration_input (CalibrationInputConfig): The calibration input configuration object.
         """
-        raise NotImplementedError("Not yet implemented")
+
+        mmm_data_validation = MMMDataValidation(mmm_data)
+        holidays_data_validation = HolidaysDataValidation(holidays_data)
+        hyperparameters_validation = HyperparametersValidation(hyperparameters)
+        calibration_input_validation = CalibrationInputValidation(mmm_data, calibration_input)
+
+        mmm_data_validation.validate()
+        holidays_data_validation.validate()
+        hyperparameters_validation.validate()
+        calibration_input_validation.validate()
+
+        print("Validation complete")
 
     # Load previous state from Json file
     def reinitialize_from_json(self, robyn_object_json_file: str) -> None:
@@ -171,16 +187,3 @@ class Robyn:
         - ModelOutputCollection: The collection of model outputs.
         """
         pass
-
-
-    # model_response (response.R from Robyn)
-    #TODO Review inputs and return type
-
-    def model_response(self, 
-        select_build: int, 
-        select_model: str, 
-        metric_name: str, 
-        metric_value: float, 
-        date_range: str, 
-        dt_hyppar: dict, 
-        dt_coef: dict) -> Any:

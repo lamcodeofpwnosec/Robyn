@@ -12,8 +12,8 @@ class ChannelCalibrationData:
     Attributes:
         lift_start_date (pd.Timestamp): Lift start date.
         lift_end_date (pd.Timestamp): Lift end date.
-        lift_abs (int): Absolute lift value.
-        spend (int): Spend value.
+        lift_abs (float): Absolute lift value.
+        spend (float): Spend value.
         confidence (float): Confidence interval.
         metric (str): Metric.
         calibration_scope (CalibrationScope): Calibration scope.
@@ -21,10 +21,10 @@ class ChannelCalibrationData:
 
     lift_start_date: pd.Timestamp = field(default_factory=pd.Timestamp)
     lift_end_date: pd.Timestamp = field(default_factory=pd.Timestamp)
-    lift_abs: int = 0
-    spend: int = 0
+    lift_abs: float = 0
+    spend: float = 0
     confidence: float = 0.0
-    metric: str = ""
+    metric: DependentVarType = None
     calibration_scope: CalibrationScope = CalibrationScope.IMMEDIATE
 
     def __str__(self) -> str:

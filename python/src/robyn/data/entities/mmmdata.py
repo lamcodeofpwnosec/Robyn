@@ -5,8 +5,6 @@ from typing import List, Optional, Any
 import pandas as pd
 from robyn.data.entities.enums import ContextSigns, DependentVarType, OrganicSigns, PaidMediaSigns
 
-
-@dataclass(frozen=True)
 class MMMData:
     class MMMDataSpec:
 
@@ -35,6 +33,8 @@ class MMMData:
             dep_var: Optional[str] = None,
             dep_var_type: DependentVarType = DependentVarType.REVENUE,
             date_var: str = "auto",
+            # window_start: datetime,
+            # window_end: datetime,
             paid_media_spends: Optional[List[str]] = None,
             paid_media_vars: Optional[List[str]] = None,
             paid_media_signs: Optional[List[PaidMediaSigns]] = None,

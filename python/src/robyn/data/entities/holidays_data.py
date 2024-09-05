@@ -11,8 +11,8 @@ class HolidaysData:
         dt_holidays: pd.DataFrame,
         prophet_vars: List[ProphetVariableType],
         prophet_signs: List[ProphetSigns],
-        prophet_country: str,
-        day_interval: int,
+        prophet_country: str, #TODO Is there a library for country codes so that we can type
+
     ) -> None:
         """
         Initialize a HolidaysData object.
@@ -22,7 +22,6 @@ class HolidaysData:
             prophet_vars (List[ProphetVariableType]): A list of Prophet variable types.
             prophet_signs (List[ProphetSigns]): A list of signs for Prophet variables.
             prophet_country (str): The country for which holidays are defined.
-            day_interval (int): The interval between days in the holiday data.
 
         Returns:
             None
@@ -31,7 +30,6 @@ class HolidaysData:
         self.prophet_vars: List[ProphetVariableType] = prophet_vars
         self.prophet_signs: List[ProphetSigns] = prophet_signs
         self.prophet_country: str = prophet_country
-        self.day_interval: int = day_interval
 
     def __str__(self) -> str:
         """
@@ -46,18 +44,4 @@ class HolidaysData:
             f"prophet_vars: {self.prophet_vars}\n"
             f"prophet_signs: {self.prophet_signs}\n"
             f"prophet_country: {self.prophet_country}\n"
-            f"day_interval: {self.day_interval}\n"
         )
-
-
-    def update(self, **kwargs: object) -> None:
-        """
-        Update the attributes of the HolidaysData object.
-        
-        :param kwargs: Keyword arguments corresponding to the attributes to update.
-        """
-        for key, value in kwargs.items():
-            if hasattr(self, key):
-                setattr(self, key, value)
-            else:
-                raise AttributeError(f"{key} is not a valid attribute of HolidaysData")

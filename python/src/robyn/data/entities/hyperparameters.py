@@ -16,12 +16,12 @@ class ChannelHyperparameters:
         gammas (List[float]): List of gamma values.
         penalty (List[float]): List of penalty values.
     """
-    thetas: List[float] = field(default_factory=list)
-    shapes: List[float] = field(default_factory=list)
-    scales: List[float] = field(default_factory=list)
-    alphas: List[float] = field(default_factory=list)
-    gammas: List[float] = field(default_factory=list)
-    penalty: List[float] = field(default_factory=list)
+    thetas: List[float] = field(default_factory=list) # if adstock is geometric 
+    shapes: List[float] = field(default_factory=list) # if adstock is weibull
+    scales: List[float] = field(default_factory=list) # if adstock is weibull
+    alphas: List[float] = field(default_factory=list) #Mandatory
+    gammas: List[float] = field(default_factory=list) #Mandatory
+    penalty: List[float] = field(default_factory=list) #optional. User only provides if they want to use it. They don't provide values. Model run calculates it. 
 
     def __str__(self) -> str:
         return (
@@ -43,7 +43,10 @@ class Hyperparameters:
     Attributes:
         hyperparameters (Dict[str, Hyperparameter]): A dictionary of hyperparameters where the key is the channel name and the value is a Hyperparameter object.
     """
-    hyperparameters: Dict[str, ChannelHyperparameters] = field(default_factory=dict)
+    hyperparameters: Dict[str, ChannelHyperparameters] = field(default_factory=dict),
+    adstock: AdStockType = None, #Mandatory. User provides this. 
+    lambda_: float # User does not provide this. Model run calculates it. 
+    train_size: List[float] = (0.5, 0.8), # User can provide this.
 
     def __str__(self) -> str:
         return (
@@ -78,3 +81,18 @@ class Hyperparameters:
         bool: True if the channel exists, False otherwise.
         """
         return channel in self.hyperparameters
+
+    @staticmethod
+    def get_hyperparameter_limits() -> Dict[str, List[str]]:
+        """
+        Returns the hyperparameter limits.
+        Returns:
+            pd.DataFrame: The hyperparameter limits.
+        """
+        return {
+                "thetas": [">=0", "<1"],
+                "alphas": [">0", "<10"],
+                "gammas": [">0", "<=1"],
+                "shapes": [">=0", "<20"],
+                "scales": [">=0", "<=1"],
+            }
