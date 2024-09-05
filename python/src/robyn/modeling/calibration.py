@@ -3,7 +3,7 @@
 from typing import List, Dict, Any, Optional
 import pandas as pd
 import numpy as np
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from robyn.analysis.transformation import AdstockSaturationTransformation
 from robyn.modeling.entities.calibration_result import CalibrationResult
@@ -15,21 +15,21 @@ class Calibration:
     def __init__(
         self,
         calibration_input: CalibrationInput,
-        mmmdata: MMMData,
-        dayInterval: int,
-        xDecompVec: pd.DataFrame,
+        mmm_data: MMMData,
+        day_interval: int,
+        x_decomp_vec: pd.DataFrame,
         coefs: pd.Series,
-        hypParamSam: Dict[str, float],
+        hyp_param_sam: Dict[str, float],
         wind_start: int = 1,
         wind_end: Optional[int] = None,
         adstock: Optional[AdstockType] = None
     ) -> None:
         self.calibration_input: CalibrationInput = calibration_input
-        self.mmmdata: MMMData = mmmdata
-        self.dayInterval: int = dayInterval
-        self.xDecompVec: pd.DataFrame = xDecompVec
+        self.mmm_data: MMMData = mmm_data
+        self.day_interval: int = day_interval
+        self.x_decomp_vec: pd.DataFrame = x_decomp_vec
         self.coefs: pd.Series = coefs
-        self.hypParamSam: Dict[str, float] = hypParamSam
+        self.hyp_param_sam: Dict[str, float] = hyp_param_sam
         self.wind_start: int = wind_start
         self.wind_end: Optional[int] = wind_end
         self.adstock: Optional[AdstockType] = adstock
@@ -56,7 +56,7 @@ class Calibration:
             
             # Calculate metrics
             decomp_abs: float = np.sum(scaled_effect)
-            total_decomp: float = np.sum(self.xDecompVec[channel])
+            total_decomp: float = np.sum(self.x_decomp_vec[channel])
             effect_percentage: float = (decomp_abs / total_decomp) * 100 if total_decomp != 0 else 0
             
             # Calculate MAPE
@@ -80,9 +80,9 @@ class Calibration:
 
     def _extract_model_data(self, start_date: datetime, end_date: datetime) -> pd.DataFrame:
         # Extract relevant model data for the given date range
-        mask: pd.Series = (self.mmmdata.data[self.mmmdata.mmmdata_spec.date_var] >= start_date) & \
-               (self.mmmdata.data[self.mmmdata.mmmdata_spec.date_var] <= end_date)
-        return self.mmmdata.data.loc[mask]
+        mask: pd.Series = (self.mmm_data.data[self.mmm_data.mmmdata_spec.date_var] >= start_date) & \
+               (self.mmm_data.data[self.mmm_data.mmmdata_spec.date_var] <= end_date)
+        return self.mmm_data.data.loc[mask]
 
     def _calculate_channel_effects(self, channel: str, model_data: pd.DataFrame) -> tuple[np.ndarray, np.ndarray]:
         # Apply adstock transformation
@@ -99,14 +99,14 @@ class Calibration:
 
     def _apply_adstock(self, data: np.ndarray, channel: str) -> np.ndarray:
         if self.adstock == AdstockType.GEOMETRIC:
-            return self._transformer.adstock_geometric(data.tolist(), self.hypParamSam[f"{channel}_theta"])["x_decayed"]
+            return self._transformer.adstock_geometric(data.tolist(), self.hyp_param_sam[f"{channel}_theta"])["x_decayed"]
         elif self.adstock == AdstockType.WEIBULL:
-            return self._transformer.adstock_weibull(data.tolist(), self.hypParamSam[f"{channel}_shape"], self.hypParamSam[f"{channel}_scale"])["x_decayed"]
+            return self._transformer.adstock_weibull(data.tolist(), self.hyp_param_sam[f"{channel}_shape"], self.hyp_param_sam[f"{channel}_scale"])["x_decayed"]
         else:
             raise ValueError("Unsupported adstock type")
 
     def _apply_saturation(self, data: np.ndarray, channel: str) -> np.ndarray:
-        return self._transformer.saturation_hill(data, self.hypParamSam[f"{channel}_alpha"], self.hypParamSam[f"{channel}_gamma"])
+        return self._transformer.saturation_hill(data, self.hyp_param_sam[f"{channel}_alpha"], self.hyp_param_sam[f"{channel}_gamma"])
 
     def _scale_effect(self, effect: np.ndarray, start_date: datetime, end_date: datetime) -> np.ndarray:
         # Scale effect to match study duration

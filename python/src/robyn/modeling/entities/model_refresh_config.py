@@ -3,7 +3,7 @@
 from dataclasses import dataclass
 from typing import Literal
 
-#TODO review refresh_mode and if we need this config at all.
+#TODO Work in progress. review refresh_mode and if we need this config at all.
 @dataclass(frozen=True)
 class ModelRefreshConfig:
     refresh_steps: int = 4
