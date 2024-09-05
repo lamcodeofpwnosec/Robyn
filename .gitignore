@@ -36,3 +36,4 @@ python/**/.venv
 python/dist
 python/**/__pycache__
 python/.vscode
+Python/src/robynpy.egg-info*
