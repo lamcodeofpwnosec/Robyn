@@ -32,5 +32,7 @@ RobynApp.Rcheck/RobynApp/R/RobynApp.rdx
 RobynApp_1.0.0.tar.gz
 Robyn_Fork.Rproj
 python/.venv
-python/src/scripts/.venv
+python/**/.venv
 python/dist
+python/**/__pycache__
+python/.vscode
