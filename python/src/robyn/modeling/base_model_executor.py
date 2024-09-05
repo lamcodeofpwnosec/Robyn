@@ -21,7 +21,27 @@ class BaseModelExecutor(ABC):
         holidays_data: HolidaysData,
         hyperparameters: Hyperparameters,
         calibration_input: CalibrationInput,
-        trials_config: TrialsConfig,
-        #model: Models = Models.RIDGE, # Ride, Hierarchical, or MMM
+        trials_config: TrialsConfig,):
+        pass
+
+    @abstractmethod
+    def model_run(
+        self,
+        dt_hyper_fixed: Optional[Dict[str, Any]] = None,
+        ts_validation: bool = False,
+        add_penalty_factor: bool = False,
+        refresh: bool = False,
+        seed: int = 123,
+        cores: Optional[int] = None,
+        rssd_zero_penalty: bool = True,
+        objective_weights: Optional[Dict[str, float]] = None,
+        nevergrad_algo: NevergradAlgorithm = NevergradAlgorithm.TWO_POINTS_DE,
+        intercept: bool = True,
+        intercept_sign: str = "non_negative",
+        outputs: bool = False,
+        model_name: Models = Models.RIDGE,
     ) -> ModelOutputs:
+        """
+        Execute the model.
+        """
         pass
