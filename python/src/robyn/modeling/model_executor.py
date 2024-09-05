@@ -2,13 +2,12 @@
 
 from typing import Optional, Dict, Any
 
-from robyn.data.entities.mmmdata_collection import MMMDataCollection
 from robyn.modeling.base_model_executor import BaseModelExecutor
 
 class ModelExecutor(BaseModelExecutor):
     def model_run(
         self,
-        mmmdata_collection: MMMDataCollection = None,
+        *args: Any,
         dt_hyper_fixed: Optional[Dict[str, Any]] = None,
         json_file: Optional[str] = None,
         ts_validation: bool = False,
@@ -26,8 +25,6 @@ class ModelExecutor(BaseModelExecutor):
         intercept_sign: str = "non_negative",
         lambda_control: Optional[float] = None,
         outputs: bool = False,
-        *args: Any,
-        **kwargs: Any
     ) -> None:
         """
         Run the Robyn model with the specified parameters.
