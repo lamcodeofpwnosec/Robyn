@@ -3,29 +3,30 @@
 from typing import Optional, Dict, Any
 
 from robyn.modeling.base_model_executor import BaseModelExecutor
+from robyn.modeling.trials_config import TrialsConfig
+from robyn.modeling.enums import NevergradAlgorithm, Models
+from robyn.modeling.model_outputs import ModelOutputs
 
 class ModelExecutor(BaseModelExecutor):
     
     def model_run(
         self,
         dt_hyper_fixed: Optional[Dict[str, Any]] = None,
-        json_file: Optional[str] = None,
         ts_validation: bool = False,
         add_penalty_factor: bool = False,
         refresh: bool = False,
         seed: int = 123,
-        quiet: bool = False,
         cores: Optional[int] = None,
-        trials: int = 5,
-        iterations: int = 2000,
+        trials_config: Optional[TrialsConfig] = None,
         rssd_zero_penalty: bool = True,
         objective_weights: Optional[Dict[str, float]] = None,
-        nevergrad_algo: str = "TwoPointsDE",
+        nevergrad_algo: NevergradAlgorithm = NevergradAlgorithm.TWO_POINTS_DE,
         intercept: bool = True,
         intercept_sign: str = "non_negative",
-        lambda_control: Optional[float] = None,
         outputs: bool = False,
-    ) -> None:
+        model_name: Models = Models.RIDGE,
+        
+    ) -> ModelOutputs:
         """
         Run the Robyn model with the specified parameters.
 

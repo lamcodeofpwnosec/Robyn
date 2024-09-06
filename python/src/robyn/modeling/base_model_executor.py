@@ -21,6 +21,7 @@ class BaseModelExecutor(ABC):
         holidays_data: HolidaysData,
         hyperparameters: Hyperparameters,
         calibration_input: CalibrationInput,
+        featurized_mmm_data: FeaturizedMMMData,
         ) -> None:
 
     @abstractmethod
@@ -32,6 +33,7 @@ class BaseModelExecutor(ABC):
         refresh: bool = False,
         seed: int = 123,
         cores: Optional[int] = None,
+        trials_config: Optional[TrialsConfig],
         rssd_zero_penalty: bool = True,
         objective_weights: Optional[Dict[str, float]] = None,
         nevergrad_algo: NevergradAlgorithm = NevergradAlgorithm.TWO_POINTS_DE,
@@ -39,6 +41,7 @@ class BaseModelExecutor(ABC):
         intercept_sign: str = "non_negative",
         outputs: bool = False,
         model_name: Models = Models.RIDGE,
+        
     ) -> ModelOutputs:
         """
         Execute the model.
