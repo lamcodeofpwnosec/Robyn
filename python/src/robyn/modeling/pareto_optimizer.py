@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 
 from robyn.data.entities.mmmdata_collection import MMMDataCollection
-from robyn.modeling.entities.modeloutput import ModelOutput
+from robyn.modeling.entities.modeloutputs import ModelOutput
 
 class ParetoOptimizer:
     @classmethod

@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 
 from robyn.modeling.entities.convergence_result import ConvergenceResult
-from robyn.modeling.entities.modeloutput import ModelOutput
+from robyn.modeling.entities.modeloutputs import ModelOutput
 
 class ModelConvergence:
     """
