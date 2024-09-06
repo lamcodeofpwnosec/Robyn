@@ -11,7 +11,7 @@ from robyn.data.entities.holidays_data import HolidaysData
 from robyn.data.entities.hyperparameters import Hyperparameters
 from robyn.data.entities.enums import AdStockType
 from robyn.data.entities.mmmdata import MMMData
-from robyn.modeling.entities.modeloutput import ModelOutputs, Trial
+from robyn.modeling.entities.modeloutputs import ModelOutputs, Trial
 from robyn.modeling.entities.modelrun_trials_config import TrialsConfig
 from sklearn.linear_model import Ridge
 

@@ -5,9 +5,9 @@ from typing import Optional, Dict, Any
 from robyn.modeling.base_model_executor import BaseModelExecutor
 
 class ModelExecutor(BaseModelExecutor):
+    
     def model_run(
         self,
-        *args: Any,
         dt_hyper_fixed: Optional[Dict[str, Any]] = None,
         json_file: Optional[str] = None,
         ts_validation: bool = False,

@@ -7,7 +7,7 @@ from robyn.data.entities.holidays_data import HolidaysData
 from robyn.data.entities.hyperparameters import Hyperparameters
 from robyn.data.entities.mmmdata import MMMData
 from robyn.modeling.entities.enums import Models, NevergradAlgorithm
-from robyn.modeling.entities.modeloutput import ModelOutputs
+from robyn.modeling.entities.modeloutputs import ModelOutputs
 from robyn.modeling.entities.modelrun_trials_config import TrialsConfig
 
 
@@ -21,8 +21,7 @@ class BaseModelExecutor(ABC):
         holidays_data: HolidaysData,
         hyperparameters: Hyperparameters,
         calibration_input: CalibrationInput,
-        trials_config: TrialsConfig,):
-        pass
+        ) -> None:
 
     @abstractmethod
     def model_run(
