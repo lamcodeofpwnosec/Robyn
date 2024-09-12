@@ -1,46 +1,25 @@
-# pyre-strict
 from dataclasses import dataclass
+from typing import Optional
+
 
 @dataclass
 class TrialsConfig:
-    def __init__(
-        self,
-        num_trials: int,
-        num_iterations_per_trial: int,
-        timeseries_validation: bool, # TODO Does this belong in this class?
-        add_penalty_factor: bool     # TODO Does this belong in this class?
-    ) -> None:
-        self.num_trials: int = num_trials
-        self.num_iterations_per_trial: int = num_iterations_per_trial
-        self.timeseries_validation: bool = timeseries_validation
-        self.add_penalty_factor: bool = add_penalty_factor
+    """
+    Configuration for model trials.
 
-    def __str__(self) -> str:
-        return (
-            f"TrialsConfig("
-            f"num_trials={self.num_trials}, "
-            f"num_iterations_per_trial={self.num_iterations_per_trial}, "
-            f"timeseries_validation={self.timeseries_validation}, "
-            f"add_penalty_factor={self.add_penalty_factor}"
-            f")"
-        )
+    This class defines the parameters for running multiple trials of the model.
 
-    def update(
-        self,
-        num_trials: int,
-        num_iterations_per_trial: int,
-        timeseries_validation: bool,
-        add_penalty_factor: bool
-    ) -> None:
-        """
-        Update the TrialsConfig parameters.
+    Attributes:
+        trials (int): The number of trials to run. Each trial is an independent
+            model fitting process with its own set of hyperparameters.
+        iterations (int): The number of iterations to run for each trial. This
+            determines how many times the optimization algorithm will attempt
+            to improve the model within each trial.
+        cores (Optional[int]): The number of CPU cores to use for parallel
+            processing. If None, the system will determine the optimal number
+            of cores to use based on available resources.
+    """
 
-        :param num_trials: The new number of trials.
-        :param num_iterations_per_trial: The new number of iterations per trial.
-        :param timeseries_validation: Whether to use timeseries validation.
-        :param add_penalty_factor: Whether to add a penalty factor.
-        """
-        self.num_trials = num_trials
-        self.num_iterations_per_trial = num_iterations_per_trial
-        self.timeseries_validation = timeseries_validation
-        self.add_penalty_factor = add_penalty_factor
+    trials: int
+    iterations: int
+    cores: Optional[int] = None
