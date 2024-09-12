@@ -74,20 +74,7 @@ class FeatureEngineering:
         Returns:
             FeaturizedMMMData: The output of the feature engineering process.
         """
-        if not quiet:
-            print(">> Running Robyn feature engineering...")
-
-        dt_transform = self._prepare_data()
-        dt_transform_roll_wind = self._create_rolling_window_data(dt_transform)
-        media_cost_factor = self._calculate_media_cost_factor(dt_transform_roll_wind)
-        model_results = self._run_models(dt_transform_roll_wind, media_cost_factor)
-
-        if self.mmm_data.mmmdata_spec.prophet_vars:
-            dt_transform = self._prophet_decomposition(dt_transform)
-
-        self._check_no_variance(dt_transform)
-
-        return FeaturizedMMMData(dt_mod=dt_transform, dt_modRollWind=dt_transform_roll_wind, modNLS=model_results)
+        pass
 
     def _prepare_data(self) -> pd.DataFrame:
         """
@@ -172,36 +159,15 @@ class FeatureEngineering:
         """
         pass
 
-    def _check_no_variance(self, dt_transform: pd.DataFrame) -> None:
+    def _apply_transformations(self, x: pd.Series, params: ChannelHyperparameters) -> pd.Series:
         """
-        Check for columns with no variance in the transformed data.
+        Apply adstock and saturation transformations to the input series.
 
         Args:
-            dt_transform (pd.DataFrame): The transformed data to check.
-        """
-        pass
-
-    @staticmethod
-    def hyper_names(adstock: str, all_media: List[str], all_vars: Optional[List[str]] = None) -> List[str]:
-        """
-        Get the names of all hyperparameters.
-
-        Args:
-            adstock (str): The type of adstock transformation.
-            all_media (List[str]): List of all media variables.
-            all_vars (Optional[List[str]], optional): List of all variables. Defaults to None.
+            x (pd.Series): Input series to transform.
+            params (ChannelHyperparameters): Hyperparameters for the channel.
 
         Returns:
-            List[str]: The names of all hyperparameters.
-        """
-        pass
-
-    @staticmethod
-    def hyper_limits() -> pd.DataFrame:
-        """
-        Get the limits for hyperparameters.
-
-        Returns:
-            pd.DataFrame: A DataFrame containing the upper and lower bounds for each hyperparameter.
+            pd.Series: Transformed series.
         """
         pass
