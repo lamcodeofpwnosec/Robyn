@@ -9,6 +9,7 @@ from robyn.data.entities.mmmdata import MMMData
 from robyn.modeling.entities.enums import Models, NevergradAlgorithm
 from robyn.modeling.entities.modeloutputs import ModelOutputs
 from robyn.modeling.entities.modelrun_trials_config import TrialsConfig
+from robyn.modeling.feature_engineering import FeaturizedMMMData
 
 
 class BaseModelExecutor(ABC):
